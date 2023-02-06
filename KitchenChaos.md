@@ -40,4 +40,9 @@ unity版本: 2022.2.2f1c1
 
 新增容器柜台
 
+![image-20230206170920435](img/KitchenChaos/image-20230206170920435.png)
+
+![image-20230206170956383](img/KitchenChaos/image-20230206170956383.png)
+
 ![image-20230206170619358](img/KitchenChaos/image-20230206170619358.png)
+
