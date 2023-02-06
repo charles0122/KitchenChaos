@@ -33,3 +33,9 @@ unity版本: 2022.2.2f1c1
 当前效果
 
 ![image-20230206125511144](img/Kitchen Chaos 开发笔记/image-20230206125511144.png)
+
+
+
+交互生成物品
+
+![image-20230206131419431](img/Kitchen Chaos 开发笔记/image-20230206131419431.png)
