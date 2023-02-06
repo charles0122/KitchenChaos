@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour,IKitchenObjectParent {
 
    
     public static Player Instance { get; private set; }
@@ -22,8 +22,13 @@ public class Player : MonoBehaviour {
     public ClearCounter selectCounter;
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs {
-        public ClearCounter selectedCounter;
+        public IKitchenObjectParent selectedCounter;
     }
+
+    // 厨房物品
+    private KitchenObject kitchenObject;
+    // 柜台生成 厨房物品SO 的位置
+    [SerializeField] private Transform kitchenObjectHoldParent;
 
     private void Awake() {
         if (Instance != null) {
@@ -37,7 +42,7 @@ public class Player : MonoBehaviour {
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e) {
         //Debug.Log(selectCounter);
-        selectCounter?.Interact();
+        selectCounter?.Interact(this);
     }
 
     private void Update(){
@@ -73,8 +78,8 @@ public class Player : MonoBehaviour {
                 // 有ClearCounter组件
                 // clearCounter.Interact();
                 if (clearCounter != selectCounter) {
+                    Debug.Log(clearCounter);
                     SetSelectedCounter(clearCounter);
-
                 }
             } else {
                 SetSelectedCounter(null);
@@ -138,5 +143,22 @@ public class Player : MonoBehaviour {
         transform.forward = Vector3.Slerp(transform.forward, moveDir, rorateSpeed * Time.deltaTime);
     }
 
+    public Transform GetKitchenObjectFollowTransform() {
+        return kitchenObjectHoldParent;
+    }
 
+    public void SetKitchenObject(KitchenObject kitchenObject) {
+        this.kitchenObject = kitchenObject;
+    }
+
+    public KitchenObject GetKitchenObject() {
+        return kitchenObject;
+    }
+    public void ClearKitchenObject() {
+        kitchenObject = null;
+    }
+
+    public bool HasKitchenObject() {
+        return (kitchenObject != null);
+    }
 }

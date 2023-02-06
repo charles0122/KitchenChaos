@@ -5,36 +5,35 @@ using UnityEngine;
 public class KitchenObject : MonoBehaviour {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
-    private ClearCounter clearCounter;
+    private IKitchenObjectParent kitchenObjectParent;
 
 
     public KitchenObjectSO GetKitchenObjectSO() { 
         return kitchenObjectSO;
     }
 
-    public void SetClearCounter(ClearCounter clearCounter) {
+    public void SetkitchenObjectParent(IKitchenObjectParent kitchenObjectParent) {
 
         // 如果物品还在柜台 先清除
-        if (this.clearCounter != null) {
-            this.clearCounter.ClearKitchenObject();
+        if (this.kitchenObjectParent != null) {
+            this.kitchenObjectParent.ClearKitchenObject();
         }
 
-        this.clearCounter = clearCounter;
+        this.kitchenObjectParent = kitchenObjectParent;
 
-        if (clearCounter.HasKitchenObject()) {
+        if (kitchenObjectParent.HasKitchenObject()) {
             Debug.Log("柜台上已经有物品了");
         }
 
-        clearCounter.SetKitchenObject(this);
+        kitchenObjectParent.SetKitchenObject(this);
 
         // 切换柜台时 获取柜台的顶点位置 并改变当前物品所在位置
-        transform.parent = clearCounter.GetKitchenObjectFollowTransform();
+        transform.parent = kitchenObjectParent.GetKitchenObjectFollowTransform();
         transform.localPosition = Vector3.zero;
     }
 
-    public ClearCounter GetClearCounter() { 
-        return clearCounter;
+    public IKitchenObjectParent GetkitchenObjectParent() { 
+        return kitchenObjectParent;
     }
-
 
 }

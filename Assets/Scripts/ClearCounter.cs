@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClearCounter : MonoBehaviour {
+public class ClearCounter : MonoBehaviour,IKitchenObjectParent {
     // 厨房物品SO
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
     // 柜台生成 厨房物品SO 的位置
@@ -10,12 +10,13 @@ public class ClearCounter : MonoBehaviour {
     // 厨房物品
     private KitchenObject kitchenObject;
 
-    public void Interact() {
+    public void Interact(Player player) {
         if (kitchenObject==null) {
             Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab, counterTopPoint);
-            kitchenObjectTransform.GetComponent<KitchenObject>().SetClearCounter(this);
+            kitchenObjectTransform.GetComponent<KitchenObject>().SetkitchenObjectParent(this);
         } else {
-            Debug.Log(kitchenObject.GetClearCounter());
+            Debug.Log(kitchenObject.GetkitchenObjectParent());
+            kitchenObject.SetkitchenObjectParent(player);
         }
     }
 
