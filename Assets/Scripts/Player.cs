@@ -22,7 +22,7 @@ public class Player : MonoBehaviour,IKitchenObjectParent {
     public ClearCounter selectCounter;
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs {
-        public IKitchenObjectParent selectedCounter;
+        public ClearCounter selectedCounter;
     }
 
     // ³ø·¿ÎïÆ·
