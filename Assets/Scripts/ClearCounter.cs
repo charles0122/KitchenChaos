@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using 
-    Engine;
+using UnityEngine;
 
 public class ClearCounter : MonoBehaviour {
     public void Interact() {
