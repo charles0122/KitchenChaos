@@ -29,3 +29,7 @@ unity版本: 2022.2.2f1c1
 ### 使用新输入系统
 
 ![image-20230205231726096](img/KitchenChaos/image-20230205231726096.png)
+
+当前效果
+
+![image-20230206125511144](img/Kitchen Chaos 开发笔记/image-20230206125511144.png)
