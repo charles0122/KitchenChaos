@@ -36,8 +36,8 @@ public class Player : MonoBehaviour {
     }
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e) {
-        Debug.Log(selectCounter);
-         selectCounter?.Interact();
+        //Debug.Log(selectCounter);
+        selectCounter?.Interact();
     }
 
     private void Update(){
