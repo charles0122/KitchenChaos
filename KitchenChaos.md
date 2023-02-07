@@ -46,3 +46,7 @@ unity版本: 2022.2.2f1c1
 
 ![image-20230206170619358](img/KitchenChaos/image-20230206170619358.png)
 
+### 切菜柜台、切菜进度及效果
+
+![image-20230208011846313](img/KitchenChaos/image-20230208011846313.png)
+
