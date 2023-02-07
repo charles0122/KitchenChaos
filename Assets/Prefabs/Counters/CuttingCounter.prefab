@@ -68,6 +68,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5146177281047903028, guid: 407c43d0539401547979bef84b0cdbb9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.29725
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -109,7 +114,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 643cc0a4d6b83f6488c866f5b59a3a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counterTopPoint: {fileID: 0}
+  counterTopPoint: {fileID: 5053797117087496792}
+  cuttingRecipeSOArray:
+  - {fileID: 11400000, guid: 434374cf6398d314183b9aa28ee0dea5, type: 2}
+  - {fileID: 11400000, guid: f1fc3a7918fe13c4c9acf967557aca42, type: 2}
+  - {fileID: 11400000, guid: 39cbe9d4828636c4da98b6d3d1aa690b, type: 2}
+--- !u!4 &5053797117087496792 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5146177281047903028, guid: 407c43d0539401547979bef84b0cdbb9,
+    type: 3}
+  m_PrefabInstance: {fileID: 92417573490983276}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2428183218119854234
 PrefabInstance:
   m_ObjectHideFlags: 0
