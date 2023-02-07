@@ -19,10 +19,10 @@ public class Player : MonoBehaviour,IKitchenObjectParent {
     // counter 图层遮罩
     [SerializeField] private LayerMask countersLayerMask;
     // 选中counter
-    public ClearCounter selectCounter;
+    public BaseCounter selectCounter;
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs {
-        public ClearCounter selectedCounter;
+        public BaseCounter selectedCounter;
     }
 
     // 厨房物品
@@ -74,12 +74,12 @@ public class Player : MonoBehaviour,IKitchenObjectParent {
         // 记录最后交互的方向 并指定交互的层 countersLayerMask
         if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask)) {
             // INFO ? TryGetComponent 可以省略泛型约束 会根据out参数推断
-            if (raycastHit.transform.TryGetComponent<ClearCounter>(out ClearCounter clearCounter)) {
+            if (raycastHit.transform.TryGetComponent<BaseCounter>(out BaseCounter baseCounter)) {
                 // 有ClearCounter组件
                 // clearCounter.Interact();
-                if (clearCounter != selectCounter) {
-                    Debug.Log(clearCounter);
-                    SetSelectedCounter(clearCounter);
+                if (baseCounter != selectCounter) {
+                    Debug.Log(baseCounter);
+                    SetSelectedCounter(baseCounter);
                 }
             } else {
                 SetSelectedCounter(null);
@@ -91,7 +91,7 @@ public class Player : MonoBehaviour,IKitchenObjectParent {
         }
     }
 
-    private void SetSelectedCounter(ClearCounter selectedCounter) {
+    private void SetSelectedCounter(BaseCounter selectedCounter) {
         this.selectCounter = selectedCounter;
 
         OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs { selectedCounter = selectedCounter });
