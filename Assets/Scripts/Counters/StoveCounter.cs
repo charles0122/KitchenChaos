@@ -98,11 +98,37 @@ public class StoveCounter : BaseCounter,IHasProgress {
             }
         } else {
             if (player.HasKitchenObject()) {
+                // 如果玩家手中有物品
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)) {
+                    // 尝试获取手持盘子 如果没有手持盘子 plateKitchenObject = null
+                    if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO())) {
+                        // 尝试将桌面上的物品放到盘子中
 
+                        // 销毁柜台中的物品
+                        GetKitchenObject().DestroySelf();
+                        // 重置状态
+                        state = State.Idle;
+                        OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
+                        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
+                            progressNormalized = 0f
+                        });
+                    }
+                } else {
+                    // 玩家手持除盘子以外的物品
+                    if (GetKitchenObject().TryGetPlate(out plateKitchenObject)) {
+                        // 柜台上放着盘子
+                        if (plateKitchenObject.TryAddIngredient(player.GetKitchenObject().GetKitchenObjectSO())) {
+                            // 尝试往盘子中添加原料
+
+                            // 销毁玩家手中的物品
+                            player.GetKitchenObject().DestroySelf();
+                        }
+                    }
+                }
             } else {
                 // 将切菜台的物品放回玩家手中
                 GetKitchenObject().SetkitchenObjectParent(player);
-
+                // 重置状态
                 state = State.Idle;
                 OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
                 OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
