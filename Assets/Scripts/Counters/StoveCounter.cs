@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class StoveCounter : BaseCounter {
     [SerializeField] private FryingRecipeSO[] fryingRecipeSOArray;
     [SerializeField] private BurningRecipeSO[] burningRecipeSOArray;
     // 状态机
-    private enum State {
+    public enum State {
         Idle,
         Frying,
         Fried,
@@ -16,10 +16,17 @@ public class StoveCounter : BaseCounter {
 
     // 煎炸时间
     private float fryingTimer;
+    private FryingRecipeSO fryingRecipeSO;
     // 烧毁时间
     private float burningTimer;
-    private FryingRecipeSO fryingRecipeSO;
     private BurningRecipeSO burningRecipeSO;
+
+    // 状态改变事件
+    public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
+    public class OnStateChangedEventArgs:EventArgs {
+        public State state;
+    }
+
     private void Start() {
         state = State.Idle;
     }
@@ -41,6 +48,7 @@ public class StoveCounter : BaseCounter {
                         burningTimer = 0f;
                         // 切换状态
                         state = State.Fried;
+                        OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state= state });
                     }
                     break;
                 case State.Fried:
@@ -51,6 +59,7 @@ public class StoveCounter : BaseCounter {
                         KitchenObject.SpawnKitchenObject(burningRecipeSO.output, this);
                         // 切换状态
                         state = State.Burned;
+                        OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
                     }
                     break;
                 case State.Burned:
@@ -68,6 +77,7 @@ public class StoveCounter : BaseCounter {
                 fryingRecipeSO = GetFryingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
                 fryingTimer = 0f;
                 state = State.Frying;
+                OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
             }
         } else {
             if (player.HasKitchenObject()) {
@@ -75,6 +85,9 @@ public class StoveCounter : BaseCounter {
             } else {
                 // 将切菜台的物品放回玩家手中
                 GetKitchenObject().SetkitchenObjectParent(player);
+
+                state = State.Idle;
+                OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
             }
         }
     }
