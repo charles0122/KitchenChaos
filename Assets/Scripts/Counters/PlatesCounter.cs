@@ -21,20 +21,30 @@ public class PlatesCounter : BaseCounter
 
     // 盘子生成事件
     public event EventHandler OnPlateSpawned;
-
+    // 盘子移走事件
+    public event EventHandler OnPlateRemoved;
 
     private void Update() {
         spawnPlateTimer+= Time.deltaTime;
         if (spawnPlateTimer > spawnPlateTimerMax) {
-            if (platesSpawnAmount<platesSpawnAmountMax) {
+            spawnPlateTimer = 0;
+            if (platesSpawnAmount < platesSpawnAmountMax) {
                 platesSpawnAmount++;
                 OnPlateSpawned?.Invoke(this, EventArgs.Empty);
-                KitchenObject.SpawnKitchenObject(plateKitchenObjectSO, this);
+                // KitchenObject.SpawnKitchenObject(plateKitchenObjectSO, this);
             }
+            
         }
     }
 
     public override void Interact(Player player) {
-        base.Interact(player);
+        if (!player.HasKitchenObject()) {
+            // 至少还有一个盘子
+            if (platesSpawnAmount>0) {
+                platesSpawnAmount--;
+                KitchenObject.SpawnKitchenObject(plateKitchenObjectSO, player);
+                OnPlateRemoved?.Invoke(this, EventArgs.Empty);
+            }
+        }
     }
 }
