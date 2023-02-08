@@ -13,8 +13,18 @@ public class ClearCounter :BaseCounter {
                 player.GetKitchenObject().SetkitchenObjectParent(this);
             }
         } else {
+            // 玩家手上有东西
             if (player.HasKitchenObject()) {
-
+                // 如果 玩家手上的物品是 PlateKitchenObject 类型的
+                if (player.GetKitchenObject() is PlateKitchenObject) {
+                    // 手持盘子
+                    PlateKitchenObject plateKitchenObject = player.GetKitchenObject() as PlateKitchenObject;
+                    // 尝试将桌面上的物品放到盘子中
+                    if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO())) {
+                        GetKitchenObject().DestroySelf();
+                    }
+                    
+                }
             } else {
                 GetKitchenObject().SetkitchenObjectParent(player);
             }
