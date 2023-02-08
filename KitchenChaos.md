@@ -61,3 +61,7 @@ unity版本: 2022.2.2f1c1
 使用接口完成进度条UI展示
 
 ![image-20230208212557362](img/KitchenChaos/image-20230208212557362.png)
+
+#### 优化ui显示
+
+![image-20230208220830321](img/KitchenChaos/image-20230208220830321.png)

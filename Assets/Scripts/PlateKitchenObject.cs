@@ -10,6 +10,10 @@ public class PlateKitchenObject : KitchenObject {
     // 当前盘子上的原料
     private List<KitchenObjectSO> kitchenObjectSOList;
 
+    public List<KitchenObjectSO> GetKitchenObjectSOList() { 
+        return kitchenObjectSOList;
+    }
+
 
     // 原料添加事件
     public event EventHandler<OnIngredientAddedEventArgs> OnIngredientAdded;
