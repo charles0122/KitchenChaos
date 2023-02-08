@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class CuttingCounter : BaseCounter {
+public class CuttingCounter : BaseCounter,IHasProgress {
     // [SerializeField] private KitchenObjectSO cutKitchenObjectSO;
     [SerializeField] private CuttingRecipeSO[] cuttingRecipeSOArray;
 
     // 切菜进度条
     private int cuttingProgress;
-    public event EventHandler<OnProgressChangedEventArgs> OnProgressChanged;
-    public class OnProgressChangedEventArgs : EventArgs {
-        public float progressNormalized;
-    }
+    public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
+   
 
     // 视觉效果
     public event EventHandler OnCut;
@@ -25,7 +23,7 @@ public class CuttingCounter : BaseCounter {
 
                 CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
 
-                OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs {
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
                     progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
                 });
                 
@@ -51,7 +49,7 @@ public class CuttingCounter : BaseCounter {
             // 找到切菜菜谱
             CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
 
-            OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs {
+            OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
                 progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
             });
 

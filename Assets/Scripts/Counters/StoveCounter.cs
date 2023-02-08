@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class StoveCounter : BaseCounter {
+public class StoveCounter : BaseCounter,IHasProgress {
     [SerializeField] private FryingRecipeSO[] fryingRecipeSOArray;
     [SerializeField] private BurningRecipeSO[] burningRecipeSOArray;
     // 状态机
@@ -23,9 +23,13 @@ public class StoveCounter : BaseCounter {
 
     // 状态改变事件
     public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
+
     public class OnStateChangedEventArgs:EventArgs {
         public State state;
     }
+    // 进度条事件
+    public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
+
 
     private void Start() {
         state = State.Idle;
@@ -38,6 +42,9 @@ public class StoveCounter : BaseCounter {
                     break;
                 case State.Frying:
                     fryingTimer += Time.deltaTime;
+                    OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
+                        progressNormalized = fryingTimer / fryingRecipeSO.fryingTimerMax
+                    });
                     if (fryingTimer > fryingRecipeSO.fryingTimerMax) {
                         GetKitchenObject().DestroySelf();
                         // 生成煎炸结果物品
@@ -49,10 +56,14 @@ public class StoveCounter : BaseCounter {
                         // 切换状态
                         state = State.Fried;
                         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state= state });
+                       
                     }
                     break;
                 case State.Fried:
                     burningTimer += Time.deltaTime;
+                    OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
+                        progressNormalized = burningTimer / burningRecipeSO.burningTimerMax
+                    });
                     if (burningTimer > burningRecipeSO.burningTimerMax) {
                         GetKitchenObject().DestroySelf();
                         // 生成煎炸结果物品
@@ -60,6 +71,9 @@ public class StoveCounter : BaseCounter {
                         // 切换状态
                         state = State.Burned;
                         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
+                        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
+                            progressNormalized = 0f
+                        });
                     }
                     break;
                 case State.Burned:
@@ -78,6 +92,9 @@ public class StoveCounter : BaseCounter {
                 fryingTimer = 0f;
                 state = State.Frying;
                 OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
+                    progressNormalized = fryingTimer / fryingRecipeSO.fryingTimerMax
+                });
             }
         } else {
             if (player.HasKitchenObject()) {
@@ -88,6 +105,9 @@ public class StoveCounter : BaseCounter {
 
                 state = State.Idle;
                 OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
+                    progressNormalized = 0f
+                });
             }
         }
     }
