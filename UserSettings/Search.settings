@@ -7,6 +7,11 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
+	"picker_window_position_offset.45F317DD" = "50;404;320;550"
+	"picker_search_text.45F317DD" = "st: watting_delivery"
+	"last_search.45F317DD" = "st: watting_delivery"
+	"OpenInspectorPreview.45F317DD" = "0"
+	"currentGroup.45F317DD" = "all"
 }
 providers = {
 	adb = {
@@ -49,10 +54,21 @@ providers = {
 		priority = 50
 		defaultAction = null
 	}
+	at = {
+		active = true
+		priority = 100
+		defaultAction = null
+	}
+	st = {
+		active = true
+		priority = 100
+		defaultAction = null
+	}
 }
 objectSelectors = {
 }
 recentSearches = [
+	"st: watting_delivery"
 ]
 searchItemFavorites = [
 ]
