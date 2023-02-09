@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class GameInput : MonoBehaviour {
 
+    private const string PLAYER_PREFS_BINDINGS = "InputBindings";
     public  static GameInput Instance { get; private set; }
 
     // 按键绑定
@@ -28,12 +29,19 @@ public class GameInput : MonoBehaviour {
         Instance = this;
 
         playerInputActions = new PlayerInputActions();
+
+        if (PlayerPrefs.HasKey(PLAYER_PREFS_BINDINGS)) {
+            playerInputActions.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PLAYER_PREFS_BINDINGS));
+        }
+
         playerInputActions.Player.Enable();
 
         // 交互输入
         playerInputActions.Player.Interact.performed += Interact_performed;
         playerInputActions.Player.InteractAlternate.performed += InteractAlternate_performed;
         playerInputActions.Player.Pause.performed += Pause_performed;
+
+        
     }
 
     private void OnDestroy() {
@@ -134,6 +142,10 @@ public class GameInput : MonoBehaviour {
             asyncCallback.Dispose();
             playerInputActions.Player.Enable();
             onActionRebind?.Invoke();
+
+            // 持久化保存按键
+            PlayerPrefs.SetString(PLAYER_PREFS_BINDINGS, playerInputActions.SaveBindingOverridesAsJson());
+            PlayerPrefs.Save();
         }).Start();
     }
 }
