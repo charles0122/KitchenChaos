@@ -18,10 +18,24 @@ MonoBehaviour:
   m_GUID: 3be5153fe7b9532499d4c5e2367b6175
   m_SerializeEntries:
   - m_GUID: d847e330c3766254e9d33734a6dbe13b
-    m_Address: LocalizationAssetTable_ja
+    m_Address: SpriteAsset_ja
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ja
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11e4f56666a7f6041bbd7dedee9745e5
+    m_Address: FontAsset_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8ecf75b445b8f849a6f42a2f7c2985f
+    m_Address: AudioAsset_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: cc0d22d4f19f2564ca758106fc0b6777, type: 2}

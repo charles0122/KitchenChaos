@@ -27,6 +27,24 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bdec032d5b221b7419119bf41d95135f
+    m_Address: Assets/Localization/Tables/FontAsset/FontAsset Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9805962742993a54981ec2821faee0ed
+    m_Address: Assets/Localization/Tables/AudioAsset/AudioAsset Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 356778c54824a234b848f00d8f8d8eed
+    m_Address: Roboto-Regular
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-zh-Hans
+    - Locale-ja
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: cc0d22d4f19f2564ca758106fc0b6777, type: 2}
   m_SchemaSet:

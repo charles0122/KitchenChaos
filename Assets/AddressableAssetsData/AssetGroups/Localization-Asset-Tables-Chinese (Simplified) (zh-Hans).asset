@@ -18,10 +18,24 @@ MonoBehaviour:
   m_GUID: d9ba42ea1eeb4be459f18cce43995182
   m_SerializeEntries:
   - m_GUID: 494a6e8f6319c5849ba295f99f2a91e7
-    m_Address: LocalizationAssetTable_zh-Hans
+    m_Address: SpriteAsset_zh-Hans
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-zh-Hans
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 699fb83b6ce73d246b622db0e6e6d369
+    m_Address: FontAsset_zh-Hans
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-zh-Hans
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0bfa92ef259d7c441ba62e6fbe0e37a4
+    m_Address: AudioAsset_zh-Hans
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-zh-Hans
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: cc0d22d4f19f2564ca758106fc0b6777, type: 2}
