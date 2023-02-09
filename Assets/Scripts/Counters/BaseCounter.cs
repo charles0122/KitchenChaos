@@ -6,6 +6,9 @@ public  class BaseCounter : MonoBehaviour,IKitchenObjectParent {
 
     // 物品放下音效
     public static event EventHandler OnAnyObjectPlacedHere;
+    public static void ResetStaticData() {
+        OnAnyObjectPlacedHere = null;
+    }
 
     // 柜台生成 厨房物品SO 的位置
     [SerializeField] private Transform counterTopPoint;
