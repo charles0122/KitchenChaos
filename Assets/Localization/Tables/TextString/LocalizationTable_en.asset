@@ -60,6 +60,18 @@ MonoBehaviour:
     m_Localized: Recipe Delivered
     m_Metadata:
       m_Items: []
+  - m_Id: 99959356653568
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101251395223552
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103724302336000
+    m_Localized: Loading...
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

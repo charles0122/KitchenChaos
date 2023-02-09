@@ -55,6 +55,18 @@ MonoBehaviour:
     m_Key: recipe_delivered
     m_Metadata:
       m_Items: []
+  - m_Id: 99959356653568
+    m_Key: play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101251395223552
+    m_Key: quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103724302336000
+    m_Key: loading
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
