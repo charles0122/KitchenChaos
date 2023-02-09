@@ -1,18 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GamePlayingClockUI : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class GamePlayingClockUI : MonoBehaviour {
+    [SerializeField] private Image timerImage;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Update() {
+        timerImage.fillAmount =  GameManager.Instance.GetGamePlayingTimerNormalized();
     }
 }
