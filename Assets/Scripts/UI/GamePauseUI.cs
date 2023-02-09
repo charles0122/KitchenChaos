@@ -11,7 +11,8 @@ public class GamePauseUI : MonoBehaviour {
 
     private void Awake() {
         optionsButton.onClick.AddListener(() => {
-            OptionsUI.Instance.Show();
+            Hide();
+            OptionsUI.Instance.Show(Show);
         });
         resumeButton.onClick.AddListener(() => {
             GameManager.Instance.TogglePauseGame();

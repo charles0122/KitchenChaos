@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class OptionsUI : MonoBehaviour {
 
+    // 点击关闭按钮时触发
+    public event Action onCloseButtonAction;
     public static OptionsUI Instance { get; private set; }
 
     [SerializeField] private Button soundEffectButton;
@@ -60,7 +63,7 @@ public class OptionsUI : MonoBehaviour {
             MusicManager.Instance.ChangeVolume();
             UpdateVisual();
         });
-        closeButton.onClick.AddListener(() => { Hide(); });
+        closeButton.onClick.AddListener(() => { Hide(); onCloseButtonAction?.Invoke(); });
 
         // 按键绑定事件监听
         moveUpButton.onClick.AddListener(() => RebindBinding(GameInput.Binding.Move_Up));
@@ -105,8 +108,10 @@ public class OptionsUI : MonoBehaviour {
 
     }
 
-    public void Show() {
-        gameObject.SetActive(true);
+    public void Show(Action onCloseButtonAction) {
+        this.onCloseButtonAction += onCloseButtonAction;
+        gameObject.SetActive(true); 
+        soundEffectButton.Select();
     }
     private void Hide() {
         gameObject?.SetActive(false);

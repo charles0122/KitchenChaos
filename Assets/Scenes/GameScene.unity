@@ -7913,12 +7913,12 @@ MonoBehaviour:
   interactButton: {fileID: 1220679325}
   interactAlternateButton: {fileID: 67623732}
   pauseButon: {fileID: 913192949}
-  gamepadInteractText: {fileID: 0}
-  gamepadInteractAlternateText: {fileID: 0}
-  gamepadPauseText: {fileID: 0}
-  gamepadInteractButton: {fileID: 0}
-  gamepadInteractAlternateButton: {fileID: 0}
-  gamepadPauseButon: {fileID: 0}
+  gamepadInteractText: {fileID: 224437318}
+  gamepadInteractAlternateText: {fileID: 960340017}
+  gamepadPauseText: {fileID: 2131066096}
+  gamepadInteractButton: {fileID: 1007434613}
+  gamepadInteractAlternateButton: {fileID: 806903925}
+  gamepadPauseButon: {fileID: 1791039595}
   pressToRebindKeyTransform: {fileID: 1879908588}
 --- !u!1 &1245438045
 GameObject:
