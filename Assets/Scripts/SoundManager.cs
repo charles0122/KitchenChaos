@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    // µ¥Àý
+    public static SoundManager Instance { get; private set; }
+
+    // ÒôÆµÆ¬¶Î
     [SerializeField] private AudioClipRefsSO audioClipRefsSO;
 
+    private void Awake() {
+        Instance = this;
+    }
     private void Start() {
-
         DeliveryManager.Instance.OnRecipeSuccessed += DeliveryManager_OnRecipeSuccessed;
         DeliveryManager.Instance.OnRecipeFailed += DeliveryManager_OnRecipeFailed;
         CuttingCounter.OnAnyCut += CuttingCounter_OnAnyCut;
@@ -50,5 +56,9 @@ public class SoundManager : MonoBehaviour
 
     private void PlaySound(AudioClip audioClip, Vector3 position, float volume = 1f) {
         AudioSource.PlayClipAtPoint(audioClip, position, volume);
+    }
+
+    public void PlayFootStepsSound(Vector3 position, float volume = 1f) {
+        PlaySound(audioClipRefsSO.footStep, position, volume);
     }
 }
