@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public  class BaseCounter : MonoBehaviour,IKitchenObjectParent {
+
+    // 物品放下音效
+    public static event EventHandler OnAnyObjectPlacedHere;
 
     // 柜台生成 厨房物品SO 的位置
     [SerializeField] private Transform counterTopPoint;
@@ -23,6 +26,10 @@ public  class BaseCounter : MonoBehaviour,IKitchenObjectParent {
 
     public void SetKitchenObject(KitchenObject kitchenObject) {
         this.kitchenObject = kitchenObject;
+
+        if (kitchenObject != null) {
+            OnAnyObjectPlacedHere?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public KitchenObject GetKitchenObject() {

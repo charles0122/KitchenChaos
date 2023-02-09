@@ -11,8 +11,10 @@ public class CuttingCounter : BaseCounter,IHasProgress {
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
    
 
-    // 视觉效果
+    // 视觉效果事件
     public event EventHandler OnCut;
+    // 切菜事件
+    public static event EventHandler OnAnyCut;
 
     public override void Interact(Player player) {
         if (!HasKitchenObject()) {
@@ -64,7 +66,8 @@ public class CuttingCounter : BaseCounter,IHasProgress {
             // 切菜进度
             cuttingProgress++;
 
-            OnCut.Invoke(this, EventArgs.Empty);
+            OnCut?.Invoke(this, EventArgs.Empty);
+            OnAnyCut?.Invoke(this, EventArgs.Empty);
 
             // 找到切菜菜谱
             CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());

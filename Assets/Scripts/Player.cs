@@ -30,6 +30,8 @@ public class Player : MonoBehaviour,IKitchenObjectParent {
     // 柜台生成 厨房物品SO 的位置
     [SerializeField] private Transform kitchenObjectHoldParent;
 
+    public event EventHandler OnPickedSomething;
+
     private void Awake() {
         if (Instance != null) {
             Debug.LogError("这里有多个Player实例");
@@ -154,6 +156,11 @@ public class Player : MonoBehaviour,IKitchenObjectParent {
 
     public void SetKitchenObject(KitchenObject kitchenObject) {
         this.kitchenObject = kitchenObject;
+
+        // 播放捡起音效
+        if (kitchenObject!=null) {
+            OnPickedSomething?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public KitchenObject GetKitchenObject() {
