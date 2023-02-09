@@ -67,6 +67,18 @@ MonoBehaviour:
     m_Key: loading
     m_Metadata:
       m_Items: []
+  - m_Id: 138000662134784
+    m_Key: pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 140583296434176
+    m_Key: main_menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 140982711615488
+    m_Key: remuse
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

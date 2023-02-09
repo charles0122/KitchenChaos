@@ -72,6 +72,18 @@ MonoBehaviour:
     m_Localized: Loading...
     m_Metadata:
       m_Items: []
+  - m_Id: 138000662134784
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 140583296434176
+    m_Localized: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 140982711615488
+    m_Localized: Remuse
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

@@ -18,12 +18,27 @@ public class GameManager : MonoBehaviour
     private float countdownToStartTimer = 3f;
     private float gamePlayingTimer;
     private float gamePlayingTimerMax = 10f;
+
+    private bool gamePause =false ;
+
     // 游戏状态改变事件
     public event EventHandler OnGameStateChanged;
+    // 游戏暂停事件
+    public event EventHandler OnGamePaused;
+    // 游戏取消暂停事件
+    public event EventHandler OnGameUnpaused;
 
     private void Awake() {
         state = State.WaitingToStart;
         Instance = this;
+    }
+
+    private void Start() {
+        GameInput.Instance.OnPauseAction += GameInput_OnPauseAction;
+    }
+
+    private void GameInput_OnPauseAction(object sender, EventArgs e) {
+        
     }
 
     private void Update() {
@@ -74,5 +89,21 @@ public class GameManager : MonoBehaviour
 
     public float GetGamePlayingTimerNormalized() {
         return 1-(gamePlayingTimer / gamePlayingTimerMax);
+    }
+
+    public void TogglePauseGame() {
+        
+        gamePause = !gamePause;
+        if (gamePause) {
+            // 暂停
+            Time.timeScale = 0f;
+            OnGamePaused?.Invoke(this, EventArgs.Empty);
+
+        } else {
+            Time.timeScale = 1f;
+            OnGameUnpaused?.Invoke(this, EventArgs.Empty);
+        }
+
+
     }
 }
