@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+
+    private const string PLAYER_PREFS_SOUND_EFFECTS_VOLUME = "SoundEffectVolume";
     // 单例
     public static SoundManager Instance { get; private set; }
 
@@ -13,6 +15,7 @@ public class SoundManager : MonoBehaviour
     private float volume = 1f;
     private void Awake() {
         Instance = this;
+        volume =  PlayerPrefs.GetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, 1f);
     }
     private void Start() {
         DeliveryManager.Instance.OnRecipeSuccessed += DeliveryManager_OnRecipeSuccessed;
@@ -68,6 +71,9 @@ public class SoundManager : MonoBehaviour
         if (volume > 1f) {
             volume = 0f;
         }
+        // 数据持久化
+        PlayerPrefs.SetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, volume);
+        PlayerPrefs.Save();
     }
 
     public float GetVolume() {
