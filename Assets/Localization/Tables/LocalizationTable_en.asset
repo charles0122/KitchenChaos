@@ -16,12 +16,46 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: fac1948f1d0c3294cb42cf67a207e43d, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 3451921359246721086
   m_TableData:
   - m_Id: 42026008576
-    m_Localized: Watting Delivery
+    m_Localized: Watting Delivery...
     m_Metadata:
       m_Items: []
+  - m_Id: 22746963771392
+    m_Localized: Recipe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22812222947328
+    m_Localized: Burger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24155671101440
+    m_Localized: Cheese
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24255248072704
+    m_Localized: Tomato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24314555531264
+    m_Localized: Salad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24535901536256
+    m_Localized: Mega
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24984004198400
+    m_Localized: 
+    m_Metadata:
+      m_Items:
+      - rid: 3451921359246721086
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 3451921359246721086
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0000b20ab9160000

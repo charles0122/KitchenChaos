@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DeliveryManager : MonoBehaviour
 {
     // 单例
     public static DeliveryManager Instance { get; private set; }
+
+    // 菜谱生成事件
+    public event EventHandler OnRecipeSpawned;
+    // 菜谱完成事件
+    public event EventHandler OnRecipeCompleted;
 
     // 菜谱列表
     [SerializeField] private RecipeListSO recipeListSO;
@@ -31,9 +37,12 @@ public class DeliveryManager : MonoBehaviour
         if (spawnRecipeTimer < 0f) {
             spawnRecipeTimer = spawnRecipeTimerMax;
             if (waitingRecipeSOList.Count<waitingRecipeMax) {
-                RecipeSO recipeSO = recipeListSO.recipeSOList[Random.Range(0, recipeListSO.recipeSOList.Count)];
+                RecipeSO recipeSO = recipeListSO.recipeSOList[UnityEngine.Random.Range(0, recipeListSO.recipeSOList.Count)];
                 Debug.Log(recipeSO.recipeName);
+                // 生成的菜谱放入等待订单
                 waitingRecipeSOList.Add(recipeSO);
+ 
+                OnRecipeSpawned.Invoke(this, EventArgs.Empty);
             }
         }
     }
@@ -64,11 +73,18 @@ public class DeliveryManager : MonoBehaviour
                 }
                 if (plateContentsMatchRecipe) {
                     // 玩家完成正确的菜谱
+                    waitingRecipeSOList.RemoveAt(i);
+                    OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
                     return;
                 }
             }
         }
         // 玩家没有完成正确的菜谱
+    }
+
+
+    public List<RecipeSO> GetRecipeSOList() {
+        return waitingRecipeSOList;
     }
 
 }
