@@ -34,10 +34,12 @@ public class GamePauseUI : MonoBehaviour {
 
     private void GameManager_OnGamePaused(object sender, System.EventArgs e) {
         Show();
+        
     }
 
     private void Show() {
         gameObject.SetActive(true);
+        resumeButton.Select();
     }
     private void Hide() {
         gameObject?.SetActive(false);

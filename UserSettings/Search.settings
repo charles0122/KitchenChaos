@@ -12,6 +12,9 @@ scopes = {
 	"last_search.45F317DD" = "st: sound "
 	"OpenInspectorPreview.45F317DD" = "0"
 	"currentGroup.45F317DD" = "all"
+	"last_search.3BE404DF" = "Button"
+	"OpenInspectorPreview.3BE404DF" = "0"
+	"currentGroup.3BE404DF" = "all"
 }
 providers = {
 	adb = {
@@ -68,6 +71,7 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"Button"
 	"st: "
 	"Recipe Delivered"
 	"Recipe"
