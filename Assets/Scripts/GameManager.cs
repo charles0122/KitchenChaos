@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class GameManager : MonoBehaviour
 {
 
@@ -14,9 +14,12 @@ public class GameManager : MonoBehaviour
     }
 
     private State state;
-    private float waitingToStart = 1f;
-    private float countdownToStart = 3f;
+    private float waitingToStartTimer = 1f;
+    private float countdownToStartTimer = 3f;
     private float gamePlayingTimer = 10f;
+
+    // 游戏状态改变事件
+    public event EventHandler OnGameStateChanged;
 
     private void Awake() {
         state = State.WaitingToStart;
@@ -26,21 +29,24 @@ public class GameManager : MonoBehaviour
     private void Update() {
         switch (state) {
             case State.WaitingToStart:
-                waitingToStart -= Time.deltaTime;
-                if (waitingToStart < 0f) {
-                    state = State.CountdownToStart; 
+                waitingToStartTimer -= Time.deltaTime;
+                if (waitingToStartTimer < 0f) {
+                    state = State.CountdownToStart;
+                    OnGameStateChanged?.Invoke(this,EventArgs.Empty);
                 }
                 break;
             case State.CountdownToStart:
-                countdownToStart -= Time.deltaTime;
-                if (countdownToStart < 0f) {
+                countdownToStartTimer -= Time.deltaTime;
+                if (countdownToStartTimer < 0f) {
                     state = State.GamePlaying;
+                    OnGameStateChanged?.Invoke(this, EventArgs.Empty);
                 }
                 break;
             case State.GamePlaying:
                 gamePlayingTimer -= Time.deltaTime;
                 if (gamePlayingTimer < 0f) {
                     state = State.GameOver;
+                    OnGameStateChanged?.Invoke(this, EventArgs.Empty);
                 }
                 break;
             case State.GameOver:
@@ -52,5 +58,13 @@ public class GameManager : MonoBehaviour
 
     public bool IsGamePlaying() {
         return state == State.GamePlaying;
+    }
+
+    public bool IsCountdownToStartActive() {
+        return state == State.CountdownToStart;
+    }
+
+    public float GetCountdownToStartTimer() {
+        return countdownToStartTimer;
     }
 }

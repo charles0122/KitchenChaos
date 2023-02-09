@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameStartCountdownUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    [SerializeField] private TextMeshProUGUI countdownText;
+    private void Start() {
+        GameManager.Instance.OnGameStateChanged += GameManager_OnGameStateChanged;
+        Hide();
+    }
+    
+    private void GameManager_OnGameStateChanged(object sender, System.EventArgs e) {
+        if (GameManager.Instance.IsCountdownToStartActive()) {
+            Show();
+        } else {
+            Hide();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Update() {
+        countdownText.text = Mathf.Ceil(GameManager.Instance.GetCountdownToStartTimer()).ToString();
+    }
+
+    private void Show() {
+        gameObject.SetActive(true);
+    }
+    private void Hide() {
+        gameObject?.SetActive(false);
     }
 }
