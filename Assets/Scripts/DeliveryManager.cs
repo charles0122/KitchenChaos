@@ -10,8 +10,12 @@ public class DeliveryManager : MonoBehaviour
 
     // 菜谱生成事件
     public event EventHandler OnRecipeSpawned;
+    
     // 菜谱完成事件
     public event EventHandler OnRecipeCompleted;
+    // 菜谱结果事件
+    public event EventHandler OnRecipeSuccessed;
+    public event EventHandler OnRecipeFailed;
 
     // 菜谱列表
     [SerializeField] private RecipeListSO recipeListSO;
@@ -74,12 +78,16 @@ public class DeliveryManager : MonoBehaviour
                 if (plateContentsMatchRecipe) {
                     // 玩家完成正确的菜谱
                     waitingRecipeSOList.RemoveAt(i);
+
                     OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
+                    OnRecipeSuccessed?.Invoke(this, EventArgs.Empty);
                     return;
                 }
             }
         }
+
         // 玩家没有完成正确的菜谱
+        OnRecipeFailed?.Invoke(this, EventArgs.Empty);
     }
 
 
