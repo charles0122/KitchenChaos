@@ -47,6 +47,14 @@ MonoBehaviour:
     m_Key: mega_burger
     m_Metadata:
       m_Items: []
+  - m_Id: 91708086943744
+    m_Key: game_over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 92968252997632
+    m_Key: recipe_delivered
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

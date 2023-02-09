@@ -30,6 +30,9 @@ public class DeliveryManager : MonoBehaviour
     // 生成等侯订单所需时间
     private float spawnRecipeTimerMax = 4f;
 
+    // 完成菜谱成功的数量
+    private int successFulRecipesAmount;
+
 
     private void Awake() {
         Instance = this;
@@ -79,6 +82,7 @@ public class DeliveryManager : MonoBehaviour
                     // 玩家完成正确的菜谱
                     waitingRecipeSOList.RemoveAt(i);
 
+                    successFulRecipesAmount++;
                     OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
                     OnRecipeSuccessed?.Invoke(this, EventArgs.Empty);
                     return;
@@ -95,4 +99,7 @@ public class DeliveryManager : MonoBehaviour
         return waitingRecipeSOList;
     }
 
+    public int GetSuccessFulRecipesAmount() {
+        return successFulRecipesAmount;
+    }
 }
