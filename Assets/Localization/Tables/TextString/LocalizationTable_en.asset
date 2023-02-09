@@ -84,6 +84,22 @@ MonoBehaviour:
     m_Localized: Remuse
     m_Metadata:
       m_Items: []
+  - m_Id: 153661341827072
+    m_Localized: 'SoundEffect: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 153827151052800
+    m_Localized: 'Music: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 157342887968768
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159914650632192
+    m_Localized: Close
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

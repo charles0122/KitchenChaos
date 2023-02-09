@@ -79,6 +79,22 @@ MonoBehaviour:
     m_Key: remuse
     m_Metadata:
       m_Items: []
+  - m_Id: 153661341827072
+    m_Key: '{SoundEffect} '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 153827151052800
+    m_Key: MusicVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 157342887968768
+    m_Key: options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159914650632192
+    m_Key: close
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

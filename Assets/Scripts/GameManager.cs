@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void GameInput_OnPauseAction(object sender, EventArgs e) {
-        
+        TogglePauseGame();
     }
 
     private void Update() {
