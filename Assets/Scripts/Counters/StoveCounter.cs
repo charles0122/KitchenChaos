@@ -85,16 +85,20 @@ public class StoveCounter : BaseCounter,IHasProgress {
     public override void Interact(Player player) {
         if (!HasKitchenObject()) {
             if (player.HasKitchenObject()) {
-                // 玩家拿着还没切的物品 放到切菜台上
-                player.GetKitchenObject().SetkitchenObjectParent(this);
+                if (HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectSO())) {
+                    // 玩家拿着还没切的物品 放到切菜台上
+                    player.GetKitchenObject().SetkitchenObjectParent(this);
 
-                fryingRecipeSO = GetFryingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
-                fryingTimer = 0f;
-                state = State.Frying;
-                OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
-                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
-                    progressNormalized = fryingTimer / fryingRecipeSO.fryingTimerMax
-                });
+                    fryingRecipeSO = GetFryingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
+                    fryingTimer = 0f;
+                    state = State.Frying;
+                    OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = state });
+                    OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
+                        progressNormalized = fryingTimer / fryingRecipeSO.fryingTimerMax
+                    });
+                }
+            } else {
+                // 玩家手中没有东西
             }
         } else {
             if (player.HasKitchenObject()) {
@@ -167,5 +171,9 @@ public class StoveCounter : BaseCounter,IHasProgress {
             }
         }
         return null;
+    }
+
+    public bool IsFried() {
+        return state == State.Fried;
     }
 }
